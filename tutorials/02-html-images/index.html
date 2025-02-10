@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sky Images Resizing</title>
+  </head>
+  <body>
+    <img
+      src="images/sky-400.jpg"
+      alt="Sky image"
+      width="400"
+      srcset="
+        images/sky-400.jpg   400w,
+        images/sky-800.jpg   800w,
+        images/sky-1000.jpg 1000w,
+        images/sky-1300.jpg 1300w
+      "
+      sizes="(max-width: 400px) 400px, 
+           (max-width: 800px) 800px, 
+           (max-width: 1000px) 1000px, 
+           1300px"
+    />
+  </body>
+</html>
