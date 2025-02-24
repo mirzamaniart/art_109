@@ -1,0 +1,76 @@
+/*
+CSS RESETS:
+ Border box reset:
+https://www.paulirish.com/2012/box-sizing-border-box-ftw/
+ 62.5% Fix: https://www.aleksandrhovhannisyan.com/blog/62-5-percent-font-size-trick/
+*/
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    font-size: 1.6rem;
+    
+    line-height: 1.6;
+}
+
+
+@keyframes stretching {
+    0%, 50% {
+        width: 100px;
+    }
+    100% {
+        width: 200px;
+    }
+}
+
+
+@keyframes coloring {
+    from { background-color: red; }
+    33%  { background-color: yellow; }
+    66%  { background-color: green; }
+    to   { background-color: blue; }
+}
+
+.button {
+    display: inline-block;
+    width: 100px;
+    height: 50px; 
+    background-color: red; 
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+
+   
+    animation: stretching 2s forwards, coloring 4s infinite alternate;
+}
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.box {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    animation: spin 2s infinite, coloring 4s infinite alternate;
+}
