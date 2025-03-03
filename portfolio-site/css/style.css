@@ -1,0 +1,148 @@
+/* style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color: #FFCBA4;
+}
+
+body {
+    background-color: #013220;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* font */
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+}
+h2 {
+    font-size: 2rem;
+}
+h3 {
+    font-size: 1.5rem;
+}
+
+/* nav */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #1d211b;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+    background-color: #555;
+    border-radius: 5px;
+    display: inline-block;
+}
+nav a:hover {
+    background-color: #777;
+}
+
+/* header */
+header {
+    background-color: #1d211b;
+    color: rgb(252, 206, 159);
+    text-align: center;
+    padding: 60px 20px 20px;
+}
+
+/* content */
+.content-wrapper {
+    margin: 0 auto;
+    padding: 30px;
+    max-width: 900px;
+}
+
+/* sections */
+.resume-section {
+    margin-bottom: 50px;
+}
+.resume-section h2 {
+    border-bottom: 2px dashed #d3d4d6;
+}
+
+/* project section */
+.project-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+.project-item {
+    display: flow-root;
+    margin: 30px 0;
+}
+.project-item img {
+    width: 100%;
+    max-width: 300px;
+    float: left;
+    margin-right: 20px;
+    border-radius: 5px;
+}
+
+/* work experience */
+.work-item {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    column-gap: 20px;
+    margin: 30px 0;
+}
+
+/* education */
+.education-item {
+    margin: 30px 0;
+}
+
+/* buttons */
+.btn {
+    background: #3c8453;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    display: inline-block;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+.btn:hover {
+    background-color: #555;
+}
+
+/* footer */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+/* responsive */
+@media screen and (max-width: 500px) {
+    .resume header::before {
+        height: 200px;
+    }
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .project-item img {
+        float: none;
+        margin-bottom: 10px;
+    }
+}
