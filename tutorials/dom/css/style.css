@@ -1,0 +1,47 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    background-color: chartreuse;
+}
+
+header {
+    padding: 50px;
+    background-color: chartreuse;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+    color: pink;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+}
+
+.text-block {
+    margin: 20px auto;
+    max-width: 800px;
+    text-align: left;
+}
+
+.hidden {
+    visibility: hidden;
+}
