@@ -1,0 +1,53 @@
+body {
+	margin: 0;
+	font-family: 'Helvetica Neue', sans-serif;
+	background-color: #fff;
+	color: #000;
+	overflow-x: hidden;
+  }
+  
+  header {
+	padding: 20px;
+	text-align: center;
+  }
+  
+  h1 {
+	font-size: 2rem;
+	margin-bottom: 10px;
+  }
+  
+  nav ul {
+	list-style: none;
+	padding: 0;
+  }
+  
+  nav li {
+	display: inline-block;
+	margin: 0 10px;
+  }
+  
+  .gallery {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 20px;
+	padding: 20px;
+  }
+  
+  .gallery img {
+	max-width: 90%;
+	height: auto;
+	display: block;
+  }
+  
+  /* Three.js container */
+  #three-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 300px;
+	z-index: 1;
+	pointer-events: none;
+  }
+  
