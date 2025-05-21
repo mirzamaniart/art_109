@@ -1,190 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Mirzamani Art - Galaxy Star Dream</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background: black;
-      width: 100%;
-      height: 100%;
-      font-family: 'Alegreya', serif;
-    }
-    canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    .planet-object {
-      position: absolute;
-      width: 80px;
-      height: 80px;
-      pointer-events: none;
-      opacity: 0.85;
-      z-index: 2;
-    }
-    .planet-eyeball {
-      position: absolute;
-      width: 100px;
-      height: 100px;
-      pointer-events: none;
-      opacity: 0.5;
-      z-index: 2;
-    }
-    .product {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 250px;
-      height: 350px;
-      opacity: 0;
-      z-index: 5;
-      transition: all 1.5s ease;
-      object-fit: cover;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    }
-    .fade-out {
-      opacity: 0 !important;
-      transition: all 1.2s ease;
-    }
-    #finalFontImage {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px;
-      z-index: 10;
-      opacity: 1;
-      transition: opacity 2s;
-    }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Mirzamani Art - Galaxy Star Dream</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background: black;
+        width: 100%;
+        height: 100%;
+        font-family: "Alegreya", serif;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+      #finalFontImage {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        z-index: 10;
+        opacity: 1;
+        transition: opacity 2s;
+      }
+      .planet-object,
+      .planet-eyeball {
+        position: absolute;
+        width: 100px;
+        height: 100px;
+        pointer-events: none;
+        opacity: 0.85;
+        z-index: 2;
+      }
+      .planet-eyeball {
+        width: 120px;
+        height: 120px;
+        opacity: 0.5;
+      }
+      .product {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 250px;
+        height: 350px;
+        opacity: 0;
+        z-index: 5;
+        transition: all 1s ease;
+        object-fit: cover;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+      }
+      .fade-in {
+        opacity: 1 !important;
+      }
+      .fade-out-left {
+        transform: translate(-150%, -50%);
+        opacity: 0 !important;
+      }
+      .fade-out-right {
+        transform: translate(150%, -50%);
+        opacity: 0 !important;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="introCanvas"></canvas>
+    <canvas id="backgroundCanvas"></canvas>
 
-<canvas id="backgroundCanvas"></canvas>
-<img id="finalFontImage" src="final_font.png" alt="Final Font">
+    <img id="finalFontImage" src="final_font.png" alt="Final Font" />
+    <audio id="bgMusic" src="music.mp3" loop autoplay></audio>
 
-<!-- Orbiting elements -->
-<img src="one.png" class="planet-object" id="planet1">
-<img src="two.png" class="planet-object" id="planet2">
-<img src="three.png" class="planet-object" id="planet3">
-<img src="four.png" class="planet-object" id="planet4">
-<img src="five.png" class="planet-object" id="planet5">
-<img src="six.png" class="planet-object" id="planet6">
-<img src="eyeball.png" class="planet-eyeball" id="eyeball">
+    <img src="one.png" class="planet-object" id="planet1" />
+    <img src="two.png" class="planet-object" id="planet2" />
+    <img src="three.png" class="planet-object" id="planet3" />
+    <img src="four.png" class="planet-object" id="planet4" />
+    <img src="five.png" class="planet-object" id="planet5" />
+    <img src="six.png" class="planet-object" id="planet6" />
+    <img src="eyeball.png" class="planet-eyeball" id="eyeball" />
 
-<!-- Product Images -->
-<img id="necklaceOne" class="product" src="necklace_one.png">
-<img id="lunaMoth" class="product" src="luna_moth.jpg">
-<img id="bunny" class="product" src="bunny.jpg">
-<img id="skulltop" class="product" src="skulltop.jpg">
-<img id="angelWings" class="product" src="angel_wings.jpg">
+    <img id="necklaceOne" class="product" src="necklace_one.png" />
+    <img id="lunaMoth" class="product" src="luna_moth.jpg" />
+    <img id="bunny" class="product" src="bunny.jpg" />
+    <img id="skulltop" class="product" src="skulltop.jpg" />
+    <img id="angelWings" class="product" src="angel_wings.jpg" />
 
-<script>
-const canvas = document.getElementById('backgroundCanvas');
-const renderer = new THREE.WebGLRenderer({ canvas, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
+    <script>
+      const introCanvas = document.getElementById("introCanvas");
+      const introRenderer = new THREE.WebGLRenderer({
+        canvas: introCanvas,
+        alpha: true,
+      });
+      introRenderer.setSize(window.innerWidth, window.innerHeight);
+      introRenderer.setPixelRatio(window.devicePixelRatio);
 
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-camera.position.z = 0.5;
+      const bgCanvas = document.getElementById("backgroundCanvas");
+      const bgRenderer = new THREE.WebGLRenderer({
+        canvas: bgCanvas,
+        alpha: true,
+      });
+      bgRenderer.setSize(window.innerWidth, window.innerHeight);
+      bgRenderer.setPixelRatio(window.devicePixelRatio);
 
-const starGeo = new THREE.BufferGeometry();
-const starPositions = [];
-for (let i = 0; i < 10000; i++) {
-  starPositions.push((Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20);
-}
-starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starPositions, 3));
-const stars = new THREE.Points(starGeo, new THREE.PointsMaterial({ color: 0xffffff, size: 0.003 }));
-scene.add(stars);
+      const introScene = new THREE.Scene();
+      const bgScene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        90,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        2000
+      );
+      camera.position.z = 1500;
 
-let t = 0;
-function animate() {
-  requestAnimationFrame(animate);
-  renderer.render(scene, camera);
-  animatePlanets();
+      function create3DStars(scene) {
+        const starGeometry = new THREE.BufferGeometry();
+        const positions = [];
+        for (let i = 0; i < 2000; i++) {
+          positions.push((Math.random() - 0.5) * 2000);
+          positions.push((Math.random() - 0.5) * 2000);
+          positions.push((Math.random() - 0.5) * 2000);
+        }
+        starGeometry.setAttribute(
+          "position",
+          new THREE.Float32BufferAttribute(positions, 3)
+        );
+        const starMaterial = new THREE.PointsMaterial({
+          color: 0xffffff,
+          size: 12,
+        });
+        const stars = new THREE.Points(starGeometry, starMaterial);
+        scene.add(stars);
+        return stars;
+      }
 
-  const posArray = starGeo.attributes.position.array;
-  for (let i = 0; i < posArray.length; i += 3) {
-    posArray[i] += 0.0001;
-    if (posArray[i] > 10) posArray[i] = -10;
-  }
-  starGeo.attributes.position.needsUpdate = true;
-}
-animate();
+      const introStars = create3DStars(introScene);
+      const bgStars = create3DStars(bgScene);
 
-function animatePlanets() {
-  const planets = document.querySelectorAll('.planet-object');
-  const eyeball = document.getElementById('eyeball');
-  t += 0.001;
-  planets.forEach((planet, i) => {
-    const angle = t * 0.5 + (i * Math.PI * 2 / planets.length);
-    const radius = 200;
-    planet.style.left = `${50 + radius * Math.cos(angle) / window.innerWidth * 100}vw`;
-    planet.style.top = `${50 + radius * Math.sin(angle) / window.innerHeight * 100}vh`;
-  });
-  if (eyeball) {
-    const eyeAngle = t * 0.3;
-    const eyeRadius = 260;
-    eyeball.style.left = `${50 + eyeRadius * Math.cos(eyeAngle) / window.innerWidth * 100}vw`;
-    eyeball.style.top = `${50 + eyeRadius * Math.sin(eyeAngle) / window.innerHeight * 100}vh`;
-  }
-}
+      let introOpacity = 1.0;
+      let isTransitioning = false;
 
-const products = [
-  "necklaceOne",
-  "lunaMoth",
-  "bunny",
-  "skulltop",
-  "angelWings"
-];
+      function animateIntro() {
+        introRenderer.render(introScene, camera);
+        const positions = introStars.geometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+          positions[i + 2] += 0.2;
+          if (positions[i + 2] > 1000) positions[i + 2] = -1000;
+        }
+        introStars.geometry.attributes.position.needsUpdate = true;
 
-let index = 0;
-let current = null;
+        if (isTransitioning) {
+          introOpacity -= 0.01;
+          introCanvas.style.opacity = introOpacity;
+          document.getElementById("finalFontImage").style.opacity =
+            introOpacity;
+          if (introOpacity <= 0) {
+            introCanvas.style.display = "none";
+            document.getElementById("finalFontImage").style.display = "none";
+            showProductsSequentially();
+            return;
+          }
+        }
+        requestAnimationFrame(animateIntro);
+      }
 
-function randomDirection() {
-  const angle = Math.random() * 2 * Math.PI;
-  return {
-    x: Math.cos(angle) * 30,
-    y: Math.sin(angle) * 30
-  };
-}
+      function animateBackground() {
+        bgRenderer.render(bgScene, camera);
+        const positions = bgStars.geometry.attributes.position.array;
+        for (let i = 0; i < positions.length; i += 3) {
+          positions[i + 2] += 0.2;
+          if (positions[i + 2] > 1000) positions[i + 2] = -1000;
+        }
+        bgStars.geometry.attributes.position.needsUpdate = true;
+        requestAnimationFrame(animateBackground);
+      }
 
-function showProduct() {
-  if (current !== null) {
-    const oldEl = document.getElementById(products[current]);
-    if (oldEl) {
-      const dir = randomDirection();
-      oldEl.style.transform = `translate(${dir.x}px, ${dir.y}px) rotate(10deg)`;
-      oldEl.classList.add("fade-out");
-      setTimeout(() => oldEl.style.opacity = 0, 800);
-    }
-  }
-  const newEl = document.getElementById(products[index]);
-  if (newEl) {
-    newEl.classList.remove("fade-out");
-    newEl.style.opacity = 1;
-    newEl.style.transform = "translate(-50%, -50%)";
-  }
-  current = index;
-  index = (index + 1) % products.length;
-  setTimeout(showProduct, 5000);
-}
+      function showProductsSequentially() {
+        const products = document.querySelectorAll(".product");
+        let index = 0;
+        function showNext() {
+          if (index > 0) {
+            const prev = products[index - 1];
+            prev.classList.remove("fade-in");
+            prev.classList.add(
+              index % 2 === 0 ? "fade-out-left" : "fade-out-right"
+            );
+          }
+          const current = products[index];
+          current.classList.remove("fade-out-left", "fade-out-right");
+          current.classList.add("fade-in");
+          index = (index + 1) % products.length;
+          setTimeout(showNext, 5000);
+        }
+        showNext();
+      }
 
-setTimeout(() => {
-  showProduct();
-  document.getElementById("finalFontImage").style.opacity = 0;
-}, 3000);
-</script>
+      const orbiting = [
+        { id: "planet1", angle: 0, speed: 0.01, radius: 220 },
+        { id: "planet2", angle: 1, speed: 0.012, radius: 240 },
+        { id: "planet3", angle: 2, speed: 0.008, radius: 260 },
+        { id: "planet4", angle: 3, speed: 0.013, radius: 280 },
+        { id: "planet5", angle: 4, speed: 0.007, radius: 300 },
+        { id: "planet6", angle: 5, speed: 0.009, radius: 260 },
+        { id: "eyeball", angle: 6, speed: 0.01, radius: 320 },
+      ];
 
-</body>
+      function animateOrbiting() {
+        orbiting.forEach((p) => {
+          const el = document.getElementById(p.id);
+          if (!el) return;
+          p.angle += p.speed;
+          const x = window.innerWidth / 2 + Math.cos(p.angle) * p.radius;
+          const y = window.innerHeight / 2 + Math.sin(p.angle) * p.radius;
+          el.style.left = `${x}px`;
+          el.style.top = `${y}px`;
+        });
+        requestAnimationFrame(animateOrbiting);
+      }
+
+      document.body.style.overflow = "hidden";
+
+      window.onload = () => {
+        animateIntro();
+        animateBackground();
+        animateOrbiting();
+      };
+
+      setTimeout(() => {
+        isTransitioning = true;
+      }, 6000);
+
+      const music = document.getElementById("bgMusic");
+      window.addEventListener(
+        "click",
+        () => {
+          music.volume = 0.3;
+          music.play().catch(() => {});
+        },
+        { once: true }
+      );
+    </script>
+  </body>
 </html>
